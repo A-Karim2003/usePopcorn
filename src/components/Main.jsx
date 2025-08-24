@@ -1,10 +1,15 @@
 import Box from "./Box";
+import SearchResult from "./SearchResult";
 
 function Main() {
   return (
     <main>
-      <Box></Box>
-      <Box></Box>
+      <Box className={"left"}>
+        <SearchResult />
+      </Box>
+      <Box>
+        <h1>right</h1>
+      </Box>
     </main>
   );
 }
