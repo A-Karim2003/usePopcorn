@@ -19,4 +19,25 @@ body {
   width: 100%;
   padding: 1rem;
   background-color: #011627;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==============Main============ */
+
+main {
+  flex: 1;
+  border: solid white;
+  max-width: 1024px;
+  width: 100%;
+  margin: auto;
+  margin-top: 2rem;
+
+  display: flex;
+  gap: 2.5rem;
+}
+
+.box {
+  background-color: red;
+  flex: 1;
 }
