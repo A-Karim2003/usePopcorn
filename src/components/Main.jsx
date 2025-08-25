@@ -2,7 +2,7 @@ import Box from "./Box";
 import SearchResult from "./SearchResult";
 import WatchedMovies from "./watched-movies-section/WatchedMovies";
 
-function Main({ movieData }) {
+function Main({ movieData, tempWatchedData }) {
   return (
     <main>
       <Box className={"left"}>
@@ -10,8 +10,11 @@ function Main({ movieData }) {
           <SearchResult key={movie.imdbID} movie={movie} />
         ))}
       </Box>
+
       <Box className={"right"}>
-        <WatchedMovies />
+        {tempWatchedData.map((movie) => (
+          <WatchedMovies key={movie.imdbID} movie={movie} />
+        ))}
       </Box>
     </main>
   );

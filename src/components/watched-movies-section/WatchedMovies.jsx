@@ -1,7 +1,7 @@
 import MoviesWatchedSummary from "./MoviesWatchedSummary";
 import WatchedMovie from "./Watchedmovie";
 
-function WatchedMovies() {
+function WatchedMovies({}) {
   return (
     <div>
       <MoviesWatchedSummary />
