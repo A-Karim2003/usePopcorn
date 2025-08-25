@@ -1,4 +1,9 @@
-function MovieDetailts() {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
+import Button from "../Button";
+
+function MoviePreview() {
   return (
     <div className="movie-details-container">
       <div className="img-container">
@@ -18,8 +23,12 @@ function MovieDetailts() {
           <p>⭐️ 8.8 IMDb rating</p>
         </div>
       </div>
+
+      <Button className={"back-btn"}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </Button>
     </div>
   );
 }
 
-export default MovieDetailts;
+export default MoviePreview;

@@ -1,7 +1,9 @@
 import Box from "./Box";
 import SearchResult from "./SearchResult";
 import WatchedMovies from "./watched-movies-section/WatchedMovies";
-import MovieDetailts from "../components/movieDetailts/MovieDetailts";
+import MoviePreview from "./MoviePreview/MoviePreview";
+import SelectRatings from "./MoviePreview/SelectRatings";
+import MovieDescription from "./MoviePreview/MovieDescription";
 
 function Main({ movieData, tempWatchedData }) {
   return (
@@ -15,9 +17,9 @@ function Main({ movieData, tempWatchedData }) {
       <Box className={"right"}>
         <WatchedMovies tempWatchedData={tempWatchedData} />
 
-        <MovieDetailts />
-
+        <MoviePreview />
         <SelectRatings />
+        <MovieDescription />
       </Box>
     </main>
   );
