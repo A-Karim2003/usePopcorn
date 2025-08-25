@@ -1,11 +1,15 @@
 import MoviesWatchedSummary from "./MoviesWatchedSummary";
 import WatchedMovie from "./Watchedmovie";
 
-function WatchedMovies({}) {
+function WatchedMovies({ tempWatchedData }) {
+  //! temp removal
+  return;
   return (
     <div>
       <MoviesWatchedSummary />
-      <WatchedMovie />
+      {tempWatchedData.map((movie) => (
+        <WatchedMovie key={movie.imdbID} movie={movie} />
+      ))}
     </div>
   );
 }

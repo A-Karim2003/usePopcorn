@@ -105,7 +105,7 @@ main {
   object-fit: cover;
 }
 
-.movie-name {
+.search-result .movie-name {
   margin-bottom: 0.8rem;
 }
 
@@ -175,4 +175,39 @@ main {
 
 .collapsible-toggle.watched-movie-btn:hover {
   background-color: #ff5f57;
+}
+
+/* ========movie-details-container========== */
+
+.movie-details-container {
+  background-color: var(--hover-color);
+  height: 200px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  color: white;
+}
+
+.movie-details-container .img-container {
+  height: 100%;
+}
+
+.movie-details {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.movie-details .movie-name {
+  flex: 1;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.movie-details .movie-detail-stats {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
