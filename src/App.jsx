@@ -52,7 +52,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <Main />
+      <Main movieData={tempMovieData} />
     </div>
   );
 }

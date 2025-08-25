@@ -1,11 +1,8 @@
-function SearchResult() {
+function SearchResult({ movie }) {
   return (
     <div className="search-result">
       <div className="img-container">
-        <img
-          src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
-          alt=""
-        />
+        <img src={movie.Poster} alt={movie.title} />
       </div>
 
       <div className="movie-info">

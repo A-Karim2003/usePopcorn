@@ -1,14 +1,17 @@
 import Box from "./Box";
 import SearchResult from "./SearchResult";
+import WatchedMovies from "./watched-movies-section/WatchedMovies";
 
-function Main() {
+function Main({ movieData }) {
   return (
     <main>
       <Box className={"left"}>
-        <SearchResult />
+        {movieData.map((movie) => (
+          <SearchResult key={movie.imdbID} movie={movie} />
+        ))}
       </Box>
-      <Box>
-        <h1>right</h1>
+      <Box className={"right"}>
+        <WatchedMovies />
       </Box>
     </main>
   );
