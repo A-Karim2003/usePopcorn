@@ -1,9 +1,9 @@
 import Button from "../components/Button";
 
-function Box({ children, className }) {
+function Box({ children, className, onToggleBtn }) {
   return (
     <section className={`box ${className}`}>
-      <Button className={"box-btn"} onClick={onclick}>
+      <Button className={"box-btn"} onClick={onToggleBtn}>
         -
       </Button>
       {children}

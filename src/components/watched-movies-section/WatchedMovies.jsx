@@ -2,8 +2,8 @@ import MoviesWatchedSummary from "./MoviesWatchedSummary";
 import WatchedMovie from "./Watchedmovie";
 
 function WatchedMovies({ tempWatchedData }) {
-  //! temp removal
   return;
+
   return (
     <div>
       <MoviesWatchedSummary />
