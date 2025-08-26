@@ -6,10 +6,9 @@ import SelectRatings from "./MoviePreview/SelectRatings";
 import MovieDescription from "./MoviePreview/MovieDescription";
 import { useState } from "react";
 
-function Main({ movies, tempWatchedData }) {
-  // function to show/hide search results & watched results
+function Main({ movieData, tempWatchedData }) {
   const [toggle, setToggle] = useState(false);
-
+  // function to show/hide search results & watched results
   function onToggleBtn() {
     console.log("Success");
   }
@@ -22,7 +21,7 @@ function Main({ movies, tempWatchedData }) {
         ))}
       </Box>
 
-      <Box className={"right"} onToggleBtn={onToggleBtn}>
+      <Box className={"right"}>
         <WatchedMovies tempWatchedData={tempWatchedData} />
 
         <MoviePreview />
