@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "./components/header/Header";
 import Main from "./components/Main";
 
@@ -49,10 +50,11 @@ const tempWatchedData = [
 ];
 
 function App() {
+  const [movies, setMovies] = useState(tempMovieData);
   return (
     <div className="app">
-      <Header />
-      <Main movieData={tempMovieData} tempWatchedData={tempWatchedData} />
+      <Header movies={movies} />
+      <Main movies={movies} tempWatchedData={tempWatchedData} />
     </div>
   );
 }

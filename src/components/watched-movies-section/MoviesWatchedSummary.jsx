@@ -1,4 +1,10 @@
-function MoviesWatchedSummary() {
+import { average } from "../../utils/math";
+
+function MoviesWatchedSummary({ watched }) {
+  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
+  const avgUserRating = average(watched.map((movie) => movie.userRating));
+  const avgRuntime = average(watched.map((movie) => movie.runtime));
+
   return (
     <div className="Movies-watched-summary">
       <h2> MOVIES YOU WATCHED</h2>

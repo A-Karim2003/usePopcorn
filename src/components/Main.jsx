@@ -6,9 +6,10 @@ import SelectRatings from "./MoviePreview/SelectRatings";
 import MovieDescription from "./MoviePreview/MovieDescription";
 import { useState } from "react";
 
-function Main({ movieData, tempWatchedData }) {
-  const [toggle, setToggle] = useState(false);
+function Main({ movies, tempWatchedData }) {
   // function to show/hide search results & watched results
+  const [toggle, setToggle] = useState(false);
+
   function onToggleBtn() {
     console.log("Success");
   }
@@ -16,7 +17,7 @@ function Main({ movieData, tempWatchedData }) {
   return (
     <main>
       <Box className={"left"}>
-        {movieData.map((movie) => (
+        {movies.map((movie) => (
           <SearchResult key={movie.imdbID} movie={movie} />
         ))}
       </Box>
