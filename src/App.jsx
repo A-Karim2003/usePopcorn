@@ -2,6 +2,13 @@ import { useState } from "react";
 import Header from "./components/header/Header";
 import Main from "./components/Main";
 
+import Box from "./components/Box";
+import SearchResult from "./components/SearchResult";
+import WatchedMovies from "./components/watched-movies-section/WatchedMovies";
+import MoviePreview from "./components/MoviePreview/MoviePreview";
+import SelectRatings from "./components/MoviePreview/SelectRatings";
+import MovieDescription from "./components/MoviePreview/MovieDescription";
+
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -54,7 +61,21 @@ function App() {
   return (
     <div className="app">
       <Header movies={movies} />
-      <Main movies={movies} tempWatchedData={tempWatchedData} />
+      <Main>
+        <Box className={"left"}>
+          {movies.map((movie) => (
+            <SearchResult key={movie.imdbID} movie={movie} />
+          ))}
+        </Box>
+
+        <Box className={"right"}>
+          <WatchedMovies watchedMovies={tempWatchedData} />
+
+          <MoviePreview />
+          <SelectRatings />
+          <MovieDescription />
+        </Box>
+      </Main>
     </div>
   );
 }

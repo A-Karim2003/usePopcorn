@@ -1,7 +1,7 @@
 import MoviesWatchedSummary from "./MoviesWatchedSummary";
 import WatchedMovie from "./Watchedmovie";
 
-function WatchedMovies({ tempWatchedData }) {
+function WatchedMovies({ watchedMovies }) {
   return;
 
   return (
