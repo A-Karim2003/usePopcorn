@@ -1,6 +1,6 @@
 import Button from "../Button";
 
-function WatchedMovies({ movie }) {
+function WatchedMovie({ movie }) {
   return (
     <div className="watched-movie">
       <div className="img-container">
@@ -20,4 +20,4 @@ function WatchedMovies({ movie }) {
   );
 }
 
-export default WatchedMovies;
+export default WatchedMovie;
