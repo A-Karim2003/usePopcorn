@@ -40,6 +40,12 @@ main {
   gap: 2.5rem;
 }
 
+@media (max-width: 840px) {
+  main {
+    flex-direction: column;
+  }
+}
+
 /* ==============Box============ */
 
 .box {
@@ -218,8 +224,28 @@ main {
   background-color: var(--hover-color);
   height: 70px;
   width: 80%;
+  min-width: 360px;
   margin: 2rem auto;
   border-radius: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.rating {
+  display: flex;
+}
+
+.ratings-container p {
+  color: #f5c518;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.star-container {
+  padding: 0 2px;
 }
 
 /* ========Movie description====== */
