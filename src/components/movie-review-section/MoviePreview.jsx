@@ -3,7 +3,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "../Button";
 
-function MoviePreview() {
+function MoviePreview({ setToggleBackbtn }) {
   return (
     <div className="movie-details-container">
       <div className="img-container">
@@ -24,7 +24,7 @@ function MoviePreview() {
         </div>
       </div>
 
-      <Button className={"back-btn"}>
+      <Button className={"back-btn"} onClick={() => setToggleBackbtn(true)}>
         <FontAwesomeIcon icon={faArrowLeft} />
       </Button>
     </div>

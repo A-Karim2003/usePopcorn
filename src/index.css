@@ -245,3 +245,8 @@ main {
   top: 8px;
   left: 8px;
 }
+
+.back-btn:hover {
+  background-color: #6741d9;
+  color: white;
+}

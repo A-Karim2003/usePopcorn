@@ -3,13 +3,14 @@ import Header from "./components/header/Header";
 import Main from "./components/Main";
 
 import Box from "./components/Box";
-import SearchResult from "./components/searchResult/SearchResult";
 import WatchedMovies from "./components/watched-movies-section/WatchedMovies";
-import MoviePreview from "./components/moviePreview/MoviePreview";
-import SelectRatings from "./components/moviePreview/SelectRatings";
-import MovieDescription from "./components/moviePreview/MovieDescription";
+import MoviePreview from "./components/movie-review-section/MoviePreview";
+import SelectRatings from "./components/movie-review-section/SelectRatings";
+import MovieDescription from "./components/movie-review-section/MovieDescription";
 import SearchResults from "./components/searchResult/searchResults";
-import MoviesWatchedSummary from "./components/watched-movies-section/MoviesWatchedSummary";
+import MoviesWatchedSummary from "./components/watched-movies-section/Movies-watched-summary";
+import WatchedMoviesSection from "./components/watched-movies-section/./WatchedMoviesSection";
+import MoviePreviewSection from "./components/movie-review-section/MoviePreviewSection";
 
 const tempMovieData = [
   {
@@ -61,6 +62,7 @@ const tempWatchedData = [
 function App() {
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
+  const [toggleBackbtn, setToggleBackbtn] = useState(false);
 
   return (
     <div className="app">
@@ -71,15 +73,18 @@ function App() {
         </Box>
 
         <Box className={"right"}>
-          <WatchedMovies watched={watched}>
-            <MoviesWatchedSummary watched={watched} />
-          </WatchedMovies>
-
-          {/* 
-            <MoviePreview />
-            <SelectRatings />
-            <MovieDescription />
-          */}
+          {toggleBackbtn ? (
+            <WatchedMoviesSection>
+              <MoviesWatchedSummary watched={watched} />
+              <WatchedMovies watched={watched} />
+            </WatchedMoviesSection>
+          ) : (
+            <MoviePreviewSection>
+              <MoviePreview setToggleBackbtn={setToggleBackbtn} />
+              <SelectRatings />
+              <MovieDescription />
+            </MoviePreviewSection>
+          )}
         </Box>
       </Main>
     </div>

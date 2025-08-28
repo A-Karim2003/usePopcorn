@@ -1,9 +1,8 @@
 import WatchedMovie from "./Watchedmovie";
 
-function WatchedMovies({ watched, children }) {
+function WatchedMovies({ watched }) {
   return (
     <div>
-      {children}
       {watched.map((movie) => (
         <WatchedMovie key={movie.imdbID} movie={movie} />
       ))}
