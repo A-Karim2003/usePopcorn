@@ -16,9 +16,9 @@ function SelectRatings() {
             onMouseEnter={() => setHoverValue(i + 1)}
             onMouseLeave={() => setHoverValue(null)}
             onClick={() => setrating(i + 1)}
+            key={i}
           >
             <Star
-              key={i}
               className="star"
               size={26}
               rating

@@ -59,6 +59,10 @@ const tempWatchedData = [
   },
 ];
 
+const API_KEY = import.meta.env.VITE_OMDB_KEY;
+
+console.log(API_KEY); // just to check
+
 function App() {
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
