@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/header/Header";
 import Main from "./components/Main";
 
@@ -61,12 +61,24 @@ const tempWatchedData = [
 
 const API_KEY = import.meta.env.VITE_OMDB_KEY;
 
-console.log(API_KEY); // just to check
-
 function App() {
-  const [movies, setMovies] = useState(tempMovieData);
+  const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
   const [toggleBackbtn, setToggleBackbtn] = useState(false);
+
+  useEffect(() => {
+    async function FetchMovie() {
+      const res = await fetch(
+        `http://www.omdbapi.com/?apikey=${API_KEY}&s=batman`
+      );
+      const { Search } = await res.json();
+
+   const uniqueMovies = Search.filter((movie)=> )
+
+      setMovies(Search);
+    }
+    FetchMovie();
+  }, []);
 
   return (
     <div className="app">
@@ -96,3 +108,5 @@ function App() {
 }
 
 export default App;
+
+//! Work on filtering movies based on ID

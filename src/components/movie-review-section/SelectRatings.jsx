@@ -21,7 +21,6 @@ function SelectRatings() {
             <Star
               className="star"
               size={26}
-              rating
               color="#f5c518"
               fill={i < displayValue ? "#f5c518" : "none"}
             />
