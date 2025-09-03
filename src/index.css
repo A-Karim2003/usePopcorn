@@ -282,12 +282,13 @@ main {
   color: white;
 }
 
-.loading-text {
-  font-size: 2rem;
+.loading-text,
+.not-found {
+  font-size: 1.4rem;
   color: white;
-  letter-spacing: 2px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-wrap: nowrap;
 }

@@ -11,6 +11,9 @@ import SearchResults from "./components/searchResult/searchResults";
 import MoviesWatchedSummary from "./components/watched-movies-section/Movies-watched-summary";
 import WatchedMoviesSection from "./components/watched-movies-section/./WatchedMoviesSection";
 import MoviePreviewSection from "./components/movie-review-section/MoviePreviewSection";
+import Loading from "./components/Loading";
+
+import MovieNotFound from "./components/MovieNotFound";
 
 const tempWatchedData = [
   {
@@ -41,14 +44,17 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
   const [toggleBackbtn, setToggleBackbtn] = useState(false);
-  const [query, setQuery] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [query, setQuery] = useState("");
+
+  // toggles between: "loading" | "success" | "error"
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     async function FetchMovies() {
-      setIsLoading(true);
-
+      //* set a loading state whilst data is being fetched
+      setStatus("loading");
       const filteredQuery = !query ? "batman" : query;
+
       try {
         const res = await fetch(
           `http://www.omdbapi.com/?apikey=${API_KEY}&s=${filteredQuery}`
@@ -61,9 +67,9 @@ function App() {
 
         const { Search } = await res.json();
 
-        if (!Search) return;
+        if (!Search) throw new Error("Movie Not Found :(");
 
-        //* filtering movies with similar IDs in O(n)
+        //* filtering out movies with similar IDs in O(n)
         const seen = new Set();
         const uniqueMovies = [];
 
@@ -76,10 +82,12 @@ function App() {
 
         //* update state if no errors
         setMovies(uniqueMovies);
+        setStatus("success");
       } catch (error) {
-        console.error("Failed to fetch movies:", error.message);
+        setStatus("error");
       }
     }
+
     FetchMovies();
   }, [query]);
 
@@ -88,7 +96,9 @@ function App() {
       <Header movies={movies} setQuery={setQuery} />
       <Main>
         <Box className={"left"}>
-          <SearchResults movies={movies} />
+          {status === "loading" && <Loading />}
+          {status === "error" && <MovieNotFound />}
+          {status === "success" && <SearchResults movies={movies} />}
         </Box>
 
         <Box className={"right"}>

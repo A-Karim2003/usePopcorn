@@ -8,7 +8,7 @@ function Header({ movies, setQuery }) {
       <div className="search">
         <input type="text" onChange={(e) => setQuery(e.target.value.trim())} />
       </div>
-      =<div className="results">Found {movies.length} results</div>
+      <div className="results">Found {movies.length} results</div>
     </header>
   );
 }
