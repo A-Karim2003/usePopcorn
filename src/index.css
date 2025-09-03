@@ -276,3 +276,13 @@ main {
   background-color: #6741d9;
   color: white;
 }
+
+.loading-text {
+  font-size: 2rem;
+  color: white;
+  letter-spacing: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
