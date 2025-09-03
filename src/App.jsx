@@ -42,9 +42,12 @@ function App() {
   const [watched, setWatched] = useState(tempWatchedData);
   const [toggleBackbtn, setToggleBackbtn] = useState(false);
   const [query, setQuery] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function FetchMovies() {
+      setIsLoading(true);
+
       const filteredQuery = !query ? "batman" : query;
       try {
         const res = await fetch(
@@ -57,6 +60,8 @@ function App() {
           );
 
         const { Search } = await res.json();
+
+        if (!Search) return;
 
         //* filtering movies with similar IDs in O(n)
         const seen = new Set();
