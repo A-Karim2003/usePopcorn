@@ -68,10 +68,12 @@ function App() {
             uniqueMovies.push(movie);
           }
         });
+
+        //* update state if no errors
+        setMovies(uniqueMovies);
       } catch (error) {
         console.error("Failed to fetch movies:", error.message);
       }
-      setMovies(uniqueMovies);
     }
     FetchMovies();
   }, [query]);
