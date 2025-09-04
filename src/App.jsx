@@ -47,7 +47,7 @@ function App() {
   const [query, setQuery] = useState("");
 
   // toggles between: "loading" | "success" | "error"
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("idle");
 
   useEffect(() => {
     async function FetchMovies() {
@@ -88,12 +88,16 @@ function App() {
       }
     }
 
-    FetchMovies();
+    const timeoutId = setTimeout(() => {
+      FetchMovies();
+    }, 750);
+
+    return () => clearTimeout(timeoutId);
   }, [query]);
 
   return (
     <div className="app">
-      <Header movies={movies} setQuery={setQuery} />
+      <Header movies={movies} setQuery={setQuery} query={query} />
       <Main>
         <Box className={"left"}>
           {status === "loading" && <Loading />}
