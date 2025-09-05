@@ -1,6 +1,6 @@
-function SearchResult({ movie }) {
+function SearchResult({ movie, setSelectedID }) {
   return (
-    <div className="search-result">
+    <div className="search-result" onClick={() => setSelectedID(movie.imdbID)}>
       <div className="img-container">
         <img src={movie.Poster} alt={movie.Title} />
       </div>

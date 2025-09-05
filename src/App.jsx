@@ -49,9 +49,12 @@ function App() {
   // toggles between: "loading" | "success" | "error"
   const [status, setStatus] = useState("idle");
 
+  const [selectedID, setSelectedID] = useState();
+  const [selectedMovie, setSelectedMovie] = useState();
+
   useEffect(() => {
     async function FetchMovies() {
-      const filteredQuery = !query ? "divergent" : query;
+      const filteredQuery = !query ? "Avengers" : query;
 
       if (filteredQuery.length < 3) return;
 
@@ -96,6 +99,22 @@ function App() {
     return () => clearTimeout(timeoutId);
   }, [query]);
 
+  useEffect(() => {
+    if (!selectedID) return;
+
+    async function handleSelectedMovie() {
+      const res = await fetch(
+        `http://www.omdbapi.com/?apikey=${API_KEY}&i=${selectedID}`
+      );
+
+      const data = await res.json();
+      setSelectedMovie(data);
+      console.log(data);
+    }
+
+    handleSelectedMovie();
+  }, [selectedID]);
+
   return (
     <div className="app">
       <Header movies={movies} setQuery={setQuery} query={query} />
@@ -103,7 +122,9 @@ function App() {
         <Box className={"left"}>
           {status === "loading" && <Loading />}
           {status === "error" && <MovieNotFound />}
-          {status === "success" && <SearchResults movies={movies} />}
+          {status === "success" && (
+            <SearchResults movies={movies} setSelectedID={setSelectedID} />
+          )}
         </Box>
 
         <Box className={"right"}>
@@ -114,9 +135,12 @@ function App() {
             </WatchedMoviesSection>
           ) : (
             <MoviePreviewSection>
-              <MoviePreview setToggleBackbtn={setToggleBackbtn} />
+              <MoviePreview
+                setToggleBackbtn={setToggleBackbtn}
+                selectedMovie={selectedMovie}
+              />
               <SelectRatings />
-              <MovieDescription />
+              <MovieDescription selectedMovie={selectedMovie} />
             </MoviePreviewSection>
           )}
         </Box>
