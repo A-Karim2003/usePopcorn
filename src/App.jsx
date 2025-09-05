@@ -90,6 +90,7 @@ function App() {
 
     const timeoutId = setTimeout(() => {
       FetchMovies();
+      console.log("success");
     }, 750);
 
     return () => clearTimeout(timeoutId);
