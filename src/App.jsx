@@ -51,9 +51,12 @@ function App() {
 
   useEffect(() => {
     async function FetchMovies() {
+      const filteredQuery = !query ? "divergent" : query;
+
+      if (filteredQuery.length < 3) return;
+
       //* set a loading state whilst data is being fetched
       setStatus("loading");
-      const filteredQuery = !query ? "batman" : query;
 
       try {
         const res = await fetch(
@@ -88,10 +91,7 @@ function App() {
       }
     }
 
-    const timeoutId = setTimeout(() => {
-      FetchMovies();
-      console.log("success");
-    }, 750);
+    const timeoutId = setTimeout(() => FetchMovies(), 750);
 
     return () => clearTimeout(timeoutId);
   }, [query]);
