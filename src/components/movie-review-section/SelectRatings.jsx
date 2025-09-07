@@ -1,7 +1,7 @@
 import { Star } from "lucide-react";
 import { useState } from "react";
 
-function SelectRatings({ selectedMovie, setWatched }) {
+function SelectRatings({ selectedMovie, watched, setWatched }) {
   const [hoverValue, setHoverValue] = useState("");
   const [rating, setrating] = useState("");
 
@@ -20,32 +20,53 @@ function SelectRatings({ selectedMovie, setWatched }) {
     setWatched((prevWatched) => [...prevWatched, movieInfo]);
   }
 
+  function isMovieWatched() {
+    return watched.some((movie) => movie.imdbID === selectedMovie.imdbID);
+  }
+
+  function displayMovieRating() {
+    const movie = watched.find(
+      (movie) => movie.imdbID === selectedMovie.imdbID
+    );
+    return movie.userRating;
+  }
+
+  console.log(watched);
+
   return (
     <div className="ratings-section">
-      <div className="ratings-container">
-        <div className="rating">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <span
-              className="star-container"
-              onMouseEnter={() => setHoverValue(i + 1)}
-              onMouseLeave={() => setHoverValue(null)}
-              onClick={() => setrating(i + 1)}
-              key={i}
-            >
-              <Star
-                className="star"
-                size={26}
-                color="#f5c518"
-                fill={i < displayValue ? "#f5c518" : "none"}
-              />
-            </span>
-          ))}
-        </div>
+      {!isMovieWatched() && (
+        <>
+          <div className="ratings-container">
+            <div className="rating">
+              {Array.from({ length: 10 }).map((_, i) => (
+                <span
+                  className="star-container"
+                  onMouseEnter={() => setHoverValue(i + 1)}
+                  onMouseLeave={() => setHoverValue(null)}
+                  onClick={() => setrating(i + 1)}
+                  key={i}
+                >
+                  <Star
+                    className="star"
+                    size={26}
+                    color="#f5c518"
+                    fill={i < displayValue ? "#f5c518" : "none"}
+                  />
+                </span>
+              ))}
+            </div>
 
-        <p>{hoverValue || rating}</p>
-      </div>
+            <p>{hoverValue || rating}</p>
+          </div>
 
-      {rating && <button onClick={handleAddToList}>+ Add to list</button>}
+          {rating && <button onClick={handleAddToList}>+ Add to list</button>}
+        </>
+      )}
+
+      {isMovieWatched() && (
+        <h4> You rated with movie {displayMovieRating()} ⭐️</h4>
+      )}
     </div>
   );
 }

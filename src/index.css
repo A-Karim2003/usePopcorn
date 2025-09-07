@@ -278,6 +278,10 @@ main {
   transform: scale(0.98);
 }
 
+.ratings-section h4 {
+  color: white;
+}
+
 /* ========Movie description====== */
 
 .desc-container {

@@ -127,6 +127,7 @@ function App() {
                   <SelectRatings
                     selectedMovie={selectedMovie}
                     setWatched={setWatched}
+                    watched={watched}
                   />
                   <MovieDescription selectedMovie={selectedMovie} />
                 </>
