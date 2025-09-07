@@ -31,8 +31,6 @@ function SelectRatings({ selectedMovie, watched, setWatched }) {
     return movie.userRating;
   }
 
-  console.log(watched);
-
   return (
     <div className="ratings-section">
       {!isMovieWatched() && (

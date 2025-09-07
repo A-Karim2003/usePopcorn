@@ -19,6 +19,13 @@ header {
 
 .logo {
   flex: 1;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .logo {
+    display: none;
+  }
 }
 .search {
   flex: 2;

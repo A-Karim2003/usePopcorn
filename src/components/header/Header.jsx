@@ -3,7 +3,9 @@ import "./header.css";
 function Header({ movies, setQuery, query }) {
   return (
     <header>
-      <h1 className="logo">🍿 usePopcorn</h1>
+      <h1 className="logo" onClick={() => window.location.reload()}>
+        🍿 usePopcorn
+      </h1>
       <div className="search">
         <input
           type="text"
