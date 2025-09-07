@@ -1,11 +1,24 @@
 import { Star } from "lucide-react";
 import { useState } from "react";
 
-function SelectRatings() {
+function SelectRatings({ selectedMovie, setWatched }) {
   const [hoverValue, setHoverValue] = useState("");
   const [rating, setrating] = useState("");
 
   const displayValue = hoverValue || rating;
+
+  function handleAddToList() {
+    const movieInfo = {
+      imdbID: selectedMovie.imdbID,
+      title: selectedMovie.Title,
+      poster: selectedMovie.Poster,
+      imdbRating: selectedMovie.imdbRating,
+      userRating: rating,
+      runtime: selectedMovie.Runtime,
+    };
+
+    setWatched((prevWatched) => [...prevWatched, movieInfo]);
+  }
 
   return (
     <div className="ratings-section">
@@ -32,7 +45,7 @@ function SelectRatings() {
         <p>{hoverValue || rating}</p>
       </div>
 
-      {rating && <button>+ Add to list</button>}
+      {rating && <button onClick={handleAddToList}>+ Add to list</button>}
     </div>
   );
 }

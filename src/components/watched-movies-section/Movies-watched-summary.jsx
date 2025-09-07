@@ -1,18 +1,22 @@
 import { average } from "../../utils/math";
 
 function MoviesWatchedSummary({ watched }) {
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
+  const avgImdbRating = average(
+    watched.map((movie) => parseInt(movie.imdbRating))
+  );
+  const avgUserRating = average(
+    watched.map((movie) => parseInt(movie.userRating))
+  );
+  const avgRuntime = average(watched.map((movie) => parseInt(movie.runtime)));
 
   return (
     <div className="Movies-watched-summary">
       <h2> MOVIES YOU WATCHED</h2>
       <div className="watched-movies-stats">
-        <p>#️⃣ 4 movies</p>
-        <p>⭐️ 8.05</p>
-        <p>🌟 9.75</p>
-        <p>⏳ 106.5 min</p>
+        <p>#️⃣ {watched.length} movies</p>
+        <p>⭐️ {avgUserRating.toFixed(2)}</p>
+        <p>🌟 {avgImdbRating}</p>
+        <p>⏳ {avgRuntime} min</p>
       </div>
     </div>
   );

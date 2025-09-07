@@ -1,10 +1,10 @@
 import Button from "../Button";
 
-function WatchedMovie({ movie }) {
+function WatchedMovie({ movie, removeMovie }) {
   return (
     <div className="watched-movie">
       <div className="img-container">
-        <img src={movie.Poster} alt={movie.title} />
+        <img src={movie.poster} alt={movie.title} />
       </div>
 
       <div className="movie-info">
@@ -13,7 +13,12 @@ function WatchedMovie({ movie }) {
           <p>⭐️ {movie.imdbRating}</p>
           <p>🌟 {movie.userRating}</p>
           <p>⏳ {movie.runtime}</p>
-          <Button className={"watched-movie-btn"}>x</Button>
+          <Button
+            className={"watched-movie-btn"}
+            onClick={() => removeMovie(movie.imdbID)}
+          >
+            x
+          </Button>
         </div>
       </div>
     </div>
