@@ -43,14 +43,13 @@ const API_KEY = import.meta.env.VITE_OMDB_KEY;
 function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
-  const [toggleBackbtn, setToggleBackbtn] = useState(false);
   const [query, setQuery] = useState("");
 
   // toggles between: "loading" | "success" | "error"
-  const [status, setStatus] = useState("idle");
-
+  const [fetchMoviesStatus, setFetchMoviesStatus] = useState("idle");
+  const [fetchMovieStatus, setFetchMovieStatus] = useState("idle");
   const [selectedID, setSelectedID] = useState();
-  const [selectedMovie, setSelectedMovie] = useState();
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     async function FetchMovies() {
@@ -59,7 +58,7 @@ function App() {
       if (filteredQuery.length < 3) return;
 
       //* set a loading state whilst data is being fetched
-      setStatus("loading");
+      setFetchMoviesStatus("loading");
 
       try {
         const res = await fetch(
@@ -88,9 +87,9 @@ function App() {
 
         //* update state if no errors
         setMovies(uniqueMovies);
-        setStatus("success");
+        setFetchMoviesStatus("success");
       } catch (error) {
-        setStatus("error");
+        setFetchMoviesStatus("error");
       }
     }
 
@@ -103,13 +102,24 @@ function App() {
     if (!selectedID) return;
 
     async function handleSelectedMovie() {
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&i=${selectedID}`
-      );
+      //* set loading status whilst data is being fetched
+      setFetchMovieStatus("loading");
 
-      const data = await res.json();
-      setSelectedMovie(data);
-      console.log(data);
+      try {
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${API_KEY}&i=${selectedID}`
+        );
+        if (!res.ok)
+          throw new Error(
+            `HTTP error! Status: ${res.status} ${res.statusText}`
+          );
+
+        const data = await res.json();
+        setSelectedMovie(data);
+        setFetchMovieStatus("success");
+      } catch (error) {
+        setFetchMovieStatus("error");
+      }
     }
 
     handleSelectedMovie();
@@ -120,28 +130,33 @@ function App() {
       <Header movies={movies} setQuery={setQuery} query={query} />
       <Main>
         <Box className={"left"}>
-          {status === "loading" && <Loading />}
-          {status === "error" && <MovieNotFound />}
-          {status === "success" && (
+          {fetchMoviesStatus === "loading" && <Loading />}
+          {fetchMoviesStatus === "error" && <MovieNotFound />}
+          {fetchMoviesStatus === "success" && (
             <SearchResults movies={movies} setSelectedID={setSelectedID} />
           )}
         </Box>
 
         <Box className={"right"}>
-          {toggleBackbtn ? (
+          {selectedMovie ? (
+            <MoviePreviewSection>
+              {fetchMovieStatus === "loading" && <Loading />}
+              {fetchMovieStatus === "success" && (
+                <>
+                  <MoviePreview
+                    selectedMovie={selectedMovie}
+                    setSelectedMovie={setSelectedMovie}
+                  />
+                  <SelectRatings />
+                  <MovieDescription selectedMovie={selectedMovie} />
+                </>
+              )}
+            </MoviePreviewSection>
+          ) : (
             <WatchedMoviesSection>
               <MoviesWatchedSummary watched={watched} />
               <WatchedMovies watched={watched} />
             </WatchedMoviesSection>
-          ) : (
-            <MoviePreviewSection>
-              <MoviePreview
-                setToggleBackbtn={setToggleBackbtn}
-                selectedMovie={selectedMovie}
-              />
-              <SelectRatings />
-              <MovieDescription selectedMovie={selectedMovie} />
-            </MoviePreviewSection>
           )}
         </Box>
       </Main>

@@ -1,20 +1,16 @@
-function MovieDescription() {
+function MovieDescription({ selectedMovie }) {
   return (
     <div className="desc-container">
-      <p className="desc">
-        A thief who steals corporate secrets through the use of dream-sharing
-        technology is given the inverse task of planting an idea into the mind
-        of a C.E.O., but his tragic past may doom the project and his team to
-        disaster.
-      </p>
+      <p className="desc">{selectedMovie.Plot}</p>
 
       <p>
         <strong>Starring: </strong>
-        Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page
+        {selectedMovie.Actors}
       </p>
 
       <p>
-        <strong>Directed by</strong> Christopher Nolan
+        <strong>Directed by </strong>
+        {selectedMovie.Director}
       </p>
     </div>
   );

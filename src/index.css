@@ -247,6 +247,8 @@ main {
   font-size: 18px;
   font-weight: bold;
   letter-spacing: 1px;
+  width: 30px;
+  text-align: center;
 }
 
 .star-container {
