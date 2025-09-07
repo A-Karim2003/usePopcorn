@@ -8,27 +8,31 @@ function SelectRatings() {
   const displayValue = hoverValue || rating;
 
   return (
-    <div className="ratings-container">
-      <div className="rating">
-        {Array.from({ length: 10 }).map((_, i) => (
-          <span
-            className="star-container"
-            onMouseEnter={() => setHoverValue(i + 1)}
-            onMouseLeave={() => setHoverValue(null)}
-            onClick={() => setrating(i + 1)}
-            key={i}
-          >
-            <Star
-              className="star"
-              size={26}
-              color="#f5c518"
-              fill={i < displayValue ? "#f5c518" : "none"}
-            />
-          </span>
-        ))}
+    <div className="ratings-section">
+      <div className="ratings-container">
+        <div className="rating">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <span
+              className="star-container"
+              onMouseEnter={() => setHoverValue(i + 1)}
+              onMouseLeave={() => setHoverValue(null)}
+              onClick={() => setrating(i + 1)}
+              key={i}
+            >
+              <Star
+                className="star"
+                size={26}
+                color="#f5c518"
+                fill={i < displayValue ? "#f5c518" : "none"}
+              />
+            </span>
+          ))}
+        </div>
+
+        <p>{hoverValue || rating}</p>
       </div>
 
-      <p>{hoverValue || rating}</p>
+      {rating && <button>+ Add to list</button>}
     </div>
   );
 }

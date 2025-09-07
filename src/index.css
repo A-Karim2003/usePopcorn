@@ -17,7 +17,6 @@ body {
   min-height: 100vh;
   width: 100%;
 }
-
 .app {
   min-height: 100vh;
   width: 100%;
@@ -225,21 +224,25 @@ main {
 }
 
 /* ==========Movie rating======== */
-.ratings-container {
-  background-color: var(--hover-color);
-  height: 70px;
+.ratings-section {
   width: 80%;
   min-width: 360px;
   margin: 2rem auto;
+  padding-bottom: 0.5rem;
   border-radius: 1rem;
 
+  background-color: var(--hover-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ratings-container {
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-}
-
-.rating {
-  display: flex;
 }
 
 .ratings-container p {
@@ -253,6 +256,26 @@ main {
 
 .star-container {
   padding: 0 2px;
+}
+
+.ratings-section button {
+  background-color: #6741d9;
+  color: white;
+  font-size: 16px;
+  border: none;
+  width: 80%;
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.ratings-section button:hover {
+  opacity: 0.8;
+}
+.ratings-section button:active {
+  transform: scale(0.98);
 }
 
 /* ========Movie description====== */
