@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "./components/header/Header";
+
 import Main from "./components/Main";
 
 import Box from "./components/Box";
@@ -17,10 +18,27 @@ import MovieNotFound from "./components/MovieNotFound";
 
 const API_KEY = import.meta.env.VITE_OMDB_KEY;
 
+const DEFAULT_MOVIES = [
+  "Avengers",
+  "Inception",
+  "Interstellar",
+  "Batman",
+  "Spider-Man",
+  "The Matrix",
+  "Gladiator",
+  "Toy Story",
+  "Shrek",
+  "Titanic",
+  "The Lion King",
+];
+
 function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * DEFAULT_MOVIES.length);
+    return DEFAULT_MOVIES[randomIndex];
+  });
 
   // toggles between: "loading" | "success" | "error"
   const [fetchMoviesStatus, setFetchMoviesStatus] = useState("idle");
@@ -30,16 +48,14 @@ function App() {
 
   useEffect(() => {
     async function fetchMovies() {
-      const filteredQuery = !query ? "Avengers" : query;
-
-      if (filteredQuery.length < 3) return;
+      if (query.length < 3) return;
 
       //* set a loading state whilst data is being fetched
       setFetchMoviesStatus("loading");
 
       try {
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${API_KEY}&s=${filteredQuery}`
+          `http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`
         );
 
         if (!res.ok)
