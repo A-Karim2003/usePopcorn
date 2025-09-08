@@ -102,6 +102,10 @@ function App() {
     handleSelectedMovie();
   }, [selectedID]);
 
+  useEffect(() => {
+    document.title = selectedMovie?.Title || "usePopcorn";
+  }, [selectedMovie]);
+
   return (
     <div className="app">
       <Header movies={movies} setQuery={setQuery} query={query} />
