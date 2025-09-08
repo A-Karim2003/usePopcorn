@@ -1,17 +1,21 @@
 import { average } from "../../utils/math";
 
 function MoviesWatchedSummary({ watched }) {
+  console.log(watched);
+
   const avgImdbRating = average(
-    watched.map((movie) => parseInt(movie.imdbRating))
+    watched.map((movie) => Number(movie.imdbRating))
   );
+
   const avgUserRating = average(
-    watched.map((movie) => parseInt(movie.userRating))
+    watched.map((movie) => Number(movie.userRating))
   );
+
   const avgRuntime = average(watched.map((movie) => parseInt(movie.runtime)));
 
-  console.log("Average Rating:", avgImdbRating);
-  console.log("Average user rating:", avgUserRating);
-  console.log("Average watch time:", avgRuntime);
+  // console.log("Average Rating:", avgImdbRating);
+  // console.log("Average user rating:", avgUserRating);
+  // console.log("Average watch time:", avgRuntime);
 
   return (
     <div className="Movies-watched-summary">
