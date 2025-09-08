@@ -10,8 +10,8 @@ function WatchedMovie({ movie, removeMovie }) {
       <div className="movie-info">
         <h3 className="movie-name">{movie.title}</h3>
         <div className="watched-movie-stats">
-          <p>⭐️ {movie.imdbRating}</p>
-          <p>🌟 {movie.userRating}</p>
+          <p>⭐️ {movie.userRating}</p>
+          <p>🌟 {movie.imdbRating}</p>
           <p>⏳ {movie.runtime}</p>
           <Button
             className={"watched-movie-btn"}

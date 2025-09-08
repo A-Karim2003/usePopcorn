@@ -128,6 +128,8 @@ function App() {
                     selectedMovie={selectedMovie}
                     setWatched={setWatched}
                     watched={watched}
+                    setSelectedMovie={setSelectedMovie}
+                    setSelectedID={setSelectedID}
                   />
                   <MovieDescription selectedMovie={selectedMovie} />
                 </>

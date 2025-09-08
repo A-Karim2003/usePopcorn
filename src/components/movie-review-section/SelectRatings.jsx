@@ -1,7 +1,7 @@
 import { Star } from "lucide-react";
 import { useState } from "react";
 
-function SelectRatings({ selectedMovie, watched, setWatched }) {
+function SelectRatings({ selectedMovie, watched, setWatched, setSelectedID }) {
   const [hoverValue, setHoverValue] = useState("");
   const [rating, setrating] = useState("");
 
@@ -18,6 +18,7 @@ function SelectRatings({ selectedMovie, watched, setWatched }) {
     };
 
     setWatched((prevWatched) => [...prevWatched, movieInfo]);
+    setSelectedID(null);
   }
 
   function isMovieWatched() {
