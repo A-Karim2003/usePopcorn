@@ -20,7 +20,7 @@ function SelectRatings({
       poster: selectedMovie.Poster,
       imdbRating: selectedMovie.imdbRating,
       userRating: rating,
-      runtime: selectedMovie.Runtime,
+      runtime: selectedMovie.Runtime === "N/A" ? 0 : selectedMovie.Runtime,
     };
 
     setWatched((prevWatched) => [...prevWatched, movieInfo]);

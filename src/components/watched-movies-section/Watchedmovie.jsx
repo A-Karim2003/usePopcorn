@@ -4,7 +4,11 @@ function WatchedMovie({ movie, removeMovie }) {
   return (
     <div className="watched-movie">
       <div className="img-container">
-        <img src={movie.poster} alt={movie.title} />
+        <img
+          src={movie.poster}
+          alt={movie.title}
+          onError={(e) => (e.target.src = "/public/887808-200.png")}
+        />
       </div>
 
       <div className="movie-info">
