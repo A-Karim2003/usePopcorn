@@ -22,7 +22,11 @@ function MoviePreview({ selectedMovie, setSelectedMovie }) {
   return (
     <div className="movie-details-container">
       <div className="img-container">
-        <img src={selectedMovie.Poster} alt={selectedMovie.Title} />
+        <img
+          src={selectedMovie.Poster}
+          alt={selectedMovie.Title}
+          onError={(e) => (e.target.src = "/public/887808-200.png")}
+        />
       </div>
 
       <div className="movie-details">

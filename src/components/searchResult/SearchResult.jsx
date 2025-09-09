@@ -2,7 +2,11 @@ function SearchResult({ movie, setSelectedID }) {
   return (
     <div className="search-result" onClick={() => setSelectedID(movie.imdbID)}>
       <div className="img-container">
-        <img src={movie.Poster} alt={movie.Title} />
+        <img
+          src={movie.Poster}
+          alt={movie.Title}
+          onError={(e) => (e.target.src = "/public/887808-200.png")}
+        />
       </div>
 
       <div className="movie-info">
@@ -14,3 +18,5 @@ function SearchResult({ movie, setSelectedID }) {
 }
 
 export default SearchResult;
+
+//! set default image on error.
