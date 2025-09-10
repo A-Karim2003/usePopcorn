@@ -34,7 +34,9 @@ const DEFAULT_MOVIES = [
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(() =>
+    JSON.parse(localStorage.getItem("watched"))
+  );
   const [query, setQuery] = useState(() => {
     const randomIndex = Math.floor(Math.random() * DEFAULT_MOVIES.length);
     return DEFAULT_MOVIES[randomIndex];
@@ -121,6 +123,10 @@ function App() {
   useEffect(() => {
     document.title = selectedMovie?.Title || "usePopcorn";
   }, [selectedMovie]);
+
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify(watched));
+  }, [watched]);
 
   return (
     <div className="app">
