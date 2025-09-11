@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useFetchMovies } from "./hooks/useFetchMovies";
+
 import Header from "./components/header/Header";
 
 import Main from "./components/Main";
@@ -33,67 +35,22 @@ const DEFAULT_MOVIES = [
 ];
 
 function App() {
-  const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState(
-    () => JSON.parse(localStorage.getItem("watched")) || []
-  );
+  // const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState(() => {
     const randomIndex = Math.floor(Math.random() * DEFAULT_MOVIES.length);
     return DEFAULT_MOVIES[randomIndex];
   });
+  const { movies, fetchMoviesStatus } = useFetchMovies(query, API_KEY);
+
+  const [watched, setWatched] = useState(
+    () => JSON.parse(localStorage.getItem("watched")) || []
+  );
 
   // toggles between: "loading" | "success" | "error"
-  const [fetchMoviesStatus, setFetchMoviesStatus] = useState("idle");
+  // const [fetchMoviesStatus, setFetchMoviesStatus] = useState("idle");
   const [fetchMovieStatus, setFetchMovieStatus] = useState("idle");
   const [selectedID, setSelectedID] = useState();
   const [selectedMovie, setSelectedMovie] = useState(null);
-
-  console.log(watched);
-
-  useEffect(() => {
-    async function fetchMovies() {
-      if (query.length < 3) return;
-
-      //* set a loading state whilst data is being fetched
-      setFetchMoviesStatus("loading");
-
-      try {
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`
-        );
-
-        if (!res.ok)
-          throw new Error(
-            `HTTP error! Status: ${res.status} ${res.statusText}`
-          );
-
-        const { Search } = await res.json();
-
-        if (!Search) throw new Error("Movie Not Found :(");
-
-        //* filtering out movies with similar IDs in O(n)
-        const seen = new Set();
-        const uniqueMovies = [];
-
-        Search.forEach((movie) => {
-          if (!seen.has(movie.imdbID)) {
-            seen.add(movie.imdbID);
-            uniqueMovies.push(movie);
-          }
-        });
-
-        //* update state if no errors
-        setMovies(uniqueMovies);
-        setFetchMoviesStatus("success");
-      } catch (error) {
-        setFetchMoviesStatus("error");
-      }
-    }
-
-    const timeoutId = setTimeout(() => fetchMovies(), 750);
-
-    return () => clearTimeout(timeoutId);
-  }, [query]);
 
   useEffect(() => {
     if (!selectedID) return;
