@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFetchMovies } from "./hooks/useFetchMovies";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 import Header from "./components/header/Header";
 
@@ -42,12 +43,8 @@ function App() {
   });
   const { movies, fetchMoviesStatus } = useFetchMovies(query, API_KEY);
 
-  const [watched, setWatched] = useState(
-    () => JSON.parse(localStorage.getItem("watched")) || []
-  );
+  const [watched, setWatched] = useLocalStorage("watched");
 
-  // toggles between: "loading" | "success" | "error"
-  // const [fetchMoviesStatus, setFetchMoviesStatus] = useState("idle");
   const [fetchMovieStatus, setFetchMovieStatus] = useState("idle");
   const [selectedID, setSelectedID] = useState();
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -82,10 +79,6 @@ function App() {
   useEffect(() => {
     document.title = selectedMovie?.Title || "usePopcorn";
   }, [selectedMovie]);
-
-  useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify(watched));
-  }, [watched]);
 
   return (
     <div className="app">
