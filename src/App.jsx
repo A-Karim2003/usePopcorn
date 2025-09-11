@@ -34,8 +34,8 @@ const DEFAULT_MOVIES = [
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState(() =>
-    JSON.parse(localStorage.getItem("watched"))
+  const [watched, setWatched] = useState(
+    () => JSON.parse(localStorage.getItem("watched")) || []
   );
   const [query, setQuery] = useState(() => {
     const randomIndex = Math.floor(Math.random() * DEFAULT_MOVIES.length);
@@ -47,6 +47,8 @@ function App() {
   const [fetchMovieStatus, setFetchMovieStatus] = useState("idle");
   const [selectedID, setSelectedID] = useState();
   const [selectedMovie, setSelectedMovie] = useState(null);
+
+  console.log(watched);
 
   useEffect(() => {
     async function fetchMovies() {
