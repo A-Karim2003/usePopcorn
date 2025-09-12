@@ -1,15 +1,21 @@
 import { useEffect, useRef } from "react";
 import "./header.css";
+import { useKey } from "../../hooks/useKey";
 
-function Header({ movies, setQuery, query }) {
+function Header({ numOfMovies, setQuery, query }) {
   const inputEl = useRef();
 
-  useEffect(() => {
-    const callback = (e) => e.key === "Enter" && inputEl.current.focus();
-    document.addEventListener("keydown", callback);
+  // useEffect(() => {
+  //   const callback = (e) => e.key === "Enter" && inputEl.current.focus();
+  //   document.addEventListener("keydown", callback);
 
-    return () => document.removeEventListener("keydown", callback);
-  }, []);
+  //   return () => document.removeEventListener("keydown", callback);
+  // }, []);
+
+  useKey("keydown", "Enter", (e) => {
+    e.key === "Enter" && inputEl.current.focus();
+  });
+
   return (
     <header>
       <h1 className="logo" onClick={() => window.location.reload()}>
@@ -24,7 +30,7 @@ function Header({ movies, setQuery, query }) {
           ref={inputEl}
         />
       </div>
-      <div className="results">Found {movies.length} results</div>
+      <div className="results">Found {numOfMovies} results</div>
     </header>
   );
 }

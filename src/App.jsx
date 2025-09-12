@@ -82,7 +82,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header movies={movies} setQuery={setQuery} query={query} />
+      <Header numOfMovies={movies.length} setQuery={setQuery} query={query} />
       <Main>
         <Box className={"left"}>
           {fetchMoviesStatus === "loading" && <Loading />}
