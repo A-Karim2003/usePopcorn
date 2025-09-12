@@ -5,15 +5,8 @@ import { useKey } from "../../hooks/useKey";
 function Header({ numOfMovies, setQuery, query }) {
   const inputEl = useRef();
 
-  // useEffect(() => {
-  //   const callback = (e) => e.key === "Enter" && inputEl.current.focus();
-  //   document.addEventListener("keydown", callback);
-
-  //   return () => document.removeEventListener("keydown", callback);
-  // }, []);
-
-  useKey("keydown", "Enter", (e) => {
-    e.key === "Enter" && inputEl.current.focus();
+  useKey("keydown", "Enter", () => {
+    inputEl.current.focus();
   });
 
   return (

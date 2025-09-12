@@ -36,7 +36,6 @@ const DEFAULT_MOVIES = [
 ];
 
 function App() {
-  // const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState(() => {
     const randomIndex = Math.floor(Math.random() * DEFAULT_MOVIES.length);
     return DEFAULT_MOVIES[randomIndex];

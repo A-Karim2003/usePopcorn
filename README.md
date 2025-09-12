@@ -62,31 +62,38 @@ npm run dev
 
 ```
 src/
+├── assets/
 ├── components/
 │   ├── header/
 │   │   ├── Header.jsx
 │   │   └── header.css
 │   ├── movie-review-section/
-│   │   ├── MoviePreview.jsx
 │   │   ├── MovieDescription.jsx
-│   │   ├── SelectRatings.jsx
-│   │   └── MoviePreviewSection.jsx
-│   ├── watched-movies-section/
-│   │   ├── MoviesWatchedSummary.jsx
-│   │   ├── WatchedMovie.jsx
-│   │   ├── WatchedMovies.jsx
-│   │   └── WatchedMoviesSection.jsx
+│   │   ├── MoviePreview.jsx
+│   │   ├── MoviePreviewSection.jsx
+│   │   └── SelectRatings.jsx
 │   ├── searchResult/
 │   │   ├── SearchResult.jsx
-│   │   └── SearchResults.jsx
+│   │   └── searchResults.jsx
+│   ├── watched-movies-section/
+│   │   ├── Movies-watched-summary.jsx
+│   │   ├── Watchedmovie.jsx
+│   │   ├── WatchedMovies.jsx
+│   │   └── WatchedMoviesSection.jsx
 │   ├── Box.jsx
 │   ├── Button.jsx
 │   ├── Loading.jsx
 │   ├── Main.jsx
 │   └── MovieNotFound.jsx
+├── hooks/
+│   ├── useFetchMovies.js
+│   ├── useKey.js
+│   └── useLocalStorage.js
 ├── utils/
 │   └── math.js
-└── App.jsx
+├── App.jsx
+├── index.css
+└── main.jsx
 ```
 
 ## 🌟 Key Features Breakdown
